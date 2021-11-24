@@ -1,0 +1,36 @@
+DELETE http://localhost:8000/books/498081
+Accept: application/json
+
+###
+PUT http://localhost:8000/books/1
+Content-Type: application/json
+
+{
+  "title": "Война войны",
+  "author": {
+    "firstname": "Лев",
+    "lastname": "Лев"
+  }
+}
+
+###
+GET http://localhost:8000/books
+Accept: application/json
+
+###
+POST http://localhost:8000/books
+Content-Type: application/json
+
+{
+  "title": "Война",
+  "author": {
+    "firstname": "Толстой",
+    "lastname": "Лев"
+  }
+}
+
+###
+GET http://localhost:8000/books/1
+Accept: application/json
+
+###
