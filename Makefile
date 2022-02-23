@@ -7,7 +7,7 @@ create-binary-dir:
 	mkdir -p bin
 
 clean:
-	rm -r bin
+	rm bin/api
 
 .PHONY: test
 
