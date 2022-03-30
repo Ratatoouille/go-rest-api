@@ -9,9 +9,11 @@ require (
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/felixge/httpsnoop v1.0.1 // indirect
 	github.com/go-playground/locales v0.14.0 // indirect
 	github.com/go-playground/universal-translator v0.18.0 // indirect
-	github.com/gorilla/securecookie v1.1.1 // indirect
+	github.com/google/uuid v1.3.0 // indirect
+	github.com/gorilla/handlers v1.5.1 // indirect
 	github.com/jackc/chunkreader/v2 v2.0.1 // indirect
 	github.com/jackc/pgconn v1.11.0 // indirect
 	github.com/jackc/pgio v1.0.0 // indirect
@@ -30,6 +32,7 @@ require (
 require (
 	github.com/BurntSushi/toml v1.0.0
 	github.com/go-playground/validator/v10 v10.10.0
+	github.com/gorilla/securecookie v1.1.1
 	github.com/gorilla/sessions v1.2.1
 	github.com/jackc/pgx/v4 v4.15.0
 	github.com/sirupsen/logrus v1.8.1
