@@ -1,8 +1,11 @@
-package store
+package sqlstore
 
 import (
 	"context"
 	"restApi/internal/model"
+	"restApi/internal/store"
+
+	"github.com/jackc/pgx/v4"
 )
 
 // UserRepository
@@ -11,13 +14,13 @@ type UserRepository struct {
 }
 
 // Create
-func (r *UserRepository) Create(u *model.User) (*model.User, error) {
+func (r *UserRepository) Create(u *model.User) error {
 	if err := u.Validate(); err != nil {
-		return nil, err
+		return err
 	}
 
 	if err := u.BeforeCreate(); err != nil {
-		return nil, err
+		return err
 	}
 
 	if err := r.store.db.QueryRow(context.Background(),
@@ -25,10 +28,14 @@ func (r *UserRepository) Create(u *model.User) (*model.User, error) {
 		u.Email,
 		u.EncryptedPassword,
 	).Scan(&u.ID); err != nil {
-		return nil, err
+		if err == pgx.ErrNoRows {
+			return store.ErrRecordNotFound
+		}
+
+		return err
 	}
 
-	return u, nil
+	return nil
 }
 
 // FindByEmail
@@ -44,6 +51,10 @@ func (r *UserRepository) FindByEmail(email string) (*model.User, error) {
 		&u.Email,
 		&u.EncryptedPassword,
 	); err != nil {
+		if err == pgx.ErrNoRows {
+			return nil, store.ErrRecordNotFound
+		}
+
 		return nil, err
 	}
 

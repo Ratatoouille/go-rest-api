@@ -26,9 +26,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	app := api.NewAPI(cfg)
-
-	if err := app.Start(); err != nil {
+	if err := api.Start(cfg); err != nil {
 		log.Fatal(err)
 	}
 }
