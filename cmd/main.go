@@ -4,7 +4,7 @@ import (
 	"flag"
 	"log"
 	"restApi/internal/app/api"
-	"restApi/internal/config"
+	"restApi/internal/app/config"
 
 	"github.com/BurntSushi/toml"
 )

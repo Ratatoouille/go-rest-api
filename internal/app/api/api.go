@@ -3,9 +3,10 @@ package api
 import (
 	"context"
 	"net/http"
-	"restApi/internal/config"
+	"restApi/internal/app/config"
 	"restApi/internal/store/sqlstore"
 
+	"github.com/gorilla/sessions"
 	"github.com/jackc/pgx/v4/pgxpool"
 )
 
@@ -18,7 +19,8 @@ func Start(config *config.Config) error {
 	defer db.Close()
 
 	store := sqlstore.New(db)
-	srv := newServer(store)
+	sessionStore := sessions.NewCookieStore([]byte(config.SessionKey))
+	srv := newServer(store, sessionStore)
 
 	return http.ListenAndServe(config.BindAddr, srv)
 }
